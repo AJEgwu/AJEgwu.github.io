@@ -319,3 +319,207 @@
     </style>
 </head>
 <body>
+<nav>
+    <a href="index.html" class="logo">Aren Egwuekwe</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="#contact" class="cta-button">Contact</a>
+    </div>
+</nav>
+
+<div class="section">
+    <div class="hero">
+        <div class="hero-content">
+            <h1>I Am</h1>
+            <h2>Aren Egwuekwe</h2>
+            <p>Computer Science student at Morehouse College with extensive experience at Google and a passion for building scalable applications. Skilled in multiple programming languages and technologies.</p>
+            <div class="button-group">
+                <a href="#" class="cta-button">Download CV</a>
+                <a href="projects.html" class="cta-button secondary-button">View Projects</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="profile-circle">
+                <img src="/api/placeholder/400/400" alt="Profile Image">
+            </div>
+        </div>
+    </div>
+
+    <div class="skills-section">
+        <h2 class="section-title">Skills & Expertise</h2>
+        <div class="skills-grid">
+            <div class="skills-category">
+                <h3>Languages</h3>
+                <div class="skills-list">
+                    <div class="skill-badge">
+                        <span class="skill-icon">🔤</span>
+                        C
+                    </div>
+                    <div class="skill-badge">
+                        <span class="skill-icon">🔧</span>
+                        C++
+                    </div>
+                    <div class="skill-badge">
+                        <span class="skill-icon">🔄</span>
+                        Golang
+                    </div>
+                    <div class="skill-badge">
+                        <span class="skill-icon">📱</span>
+                        Swift
+                    </div>
+                    <div class="skill-badge">
+                        <span class="skill-icon">☕</span>
+                        Java
+                    </div>
+                    <div class="skill-badge">
+                        <span class="skill-icon">🐍</span>
+                        Python
+                    </div>
+                </div>
+            </div>
+            <div class="skills-category">
+                <h3>Frontend</h3>
+                <div class="skills-list">
+                    <div class="skill-badge">HTML</div>
+                    <div class="skill-badge">CSS</div>
+                    <div class="skill-badge">JavaScript</div>
+                </div>
+            </div>
+            <div class="skills-category">
+                <h3>Technologies</h3>
+                <div class="skills-list">
+                    <div class="skill-badge">Linux</div>
+                    <div class="skill-badge">XCode</div>
+                    <div class="skill-badge">SQL</div>
+                    <div class="skill-badge">CLI</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="recent-projects">
+        <h2 class="section-title">Recent Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-image"></div>
+                <div class="project-content">
+                    <h3>GeoGuessr Clone</h3>
+                    <p>A geography guessing game built with HTML, CSS, and JavaScript, utilizing the Google Maps API.</p>
+                    <div class="project-links">
+                        <a href="#">View Project →</a>
+                        <a href="#">GitHub →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image"></div>
+                <div class="project-content">
+                    <h3>AI Fitness Web App</h3>
+                    <p>A Streamlit-based web application featuring generative AI for personalized workout and diet plans.</p>
+                    <div class="project-links">
+                        <a href="#">View Project →</a>
+                        <a href="#">GitHub →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- About section content -->
+<div class="about-section">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-grid">
+        <div class="about-card">
+            <h3>Education</h3>
+            <p>B.S. in Computer Science<br>
+            Minor in Mathematics<br>
+            Morehouse College<br>
+            Expected Graduation: May 2026<br>
+            GPA: 4.0</p>
+        </div>
+        <div class="about-card">
+            <h3>Experience</h3>
+            <p>STEP Intern at Google<br>
+            New York City & Sunnyvale<br>
+            2023 - 2024</p>
+        </div>
+        <div class="about-card">
+            <h3>Awards</h3>
+            <p>• Highest Ranking Scholar Award<br>
+            • Certificate of Excellence in Mathematics<br>
+            • Morehouse Academic Scholarship</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Floating shapes animation
+    function createFloatingShapes() {
+        const container = document.getElementById('floating-shapes');
+        if (!container) return;
+        
+        for (let i = 0; i < 5; i++) {
+            const shape = document.createElement('div');
+            shape.className = 'floating-shape';
+            container.appendChild(shape);
+            
+            gsap.to(shape, {
+                x: 'random(-100, 100, 5)',
+                y: 'random(-100, 100, 5)',
+                rotation: 'random(-180, 180)',
+                duration: 'random(3, 6)',
+                repeat: -1,
+                yoyo: true,
+                ease: 'none'
+            });
+        }
+    }
+
+    // Navigation handling
+    function initNavigation() {
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('.section');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.getAttribute('href').startsWith('#')) return;
+                
+                e.preventDefault();
+                const targetPage = link.getAttribute('href').split('.')[0];
+                showSection(targetPage);
+            });
+        });
+    }
+
+    // Section display handling
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.section, .about-section, .projects-section');
+        sections.forEach(section => {
+            section.style.display = 'none';
+        });
+
+        const targetSection = document.querySelector(
+            sectionId === 'index' ? '.section' :
+            sectionId === 'about' ? '.about-section' :
+            '.projects-section'
+        );
+        if (targetSection) {
+            targetSection.style.display = 'block';
+        }
+    }
+
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', () => {
+        createFloatingShapes();
+        initNavigation();
+        
+        // Show initial section based on URL
+        const page = window.location.pathname.split('/').pop().split('.')[0] || 'index';
+        showSection(page);
+    });
+</script>
+</body>
+</html>
